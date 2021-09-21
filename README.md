@@ -38,9 +38,9 @@ Timeline aka Roadmap:
   
   
   
-  Examples of Source code:
+ # Examples of Source code:
   
-  First iteration of my PlayerMovement.cs script
+ ## First iteration of my PlayerMovement.cs script
 ```  
      void Update()
     {
@@ -81,6 +81,9 @@ Timeline aka Roadmap:
 
 
     }
+ ```
+ 
+
 
 
 
