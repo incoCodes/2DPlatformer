@@ -41,8 +41,8 @@ Timeline aka Roadmap:
   Examples of Source code:
   
   First iteration of my PlayerMovement.cs script
-  
-  ```   void Update()
+```  
+     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector2.right * speed * Time.deltaTime * horizontalInput);
@@ -80,7 +80,7 @@ Timeline aka Roadmap:
 
 
 
-    } ```
+    }
 
 
 
