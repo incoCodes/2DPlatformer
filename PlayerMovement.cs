@@ -1,35 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
 
     public float speed = 5f;
-    float horizontalInput;
+    private float horizontalInput;
     private Rigidbody2D _ridbod;
     private bool isJumping;
     public float jumpForce = 100f;
     private Renderer _amrbod;
     private SpriteRenderer _amrRend;
     private BoxCollider2D _boxx;
-    private Vector2 position = new Vector2(0f, 0f);
-    public Vector2 blackPosition = new Vector2(0f, 0f);
-    public Vector2 whitePosition = new Vector2(0f, 0f);
     public Animator animator;
+    public GameObject spawn;
+    private HingeJoint2D hd;
+    [SerializeField] private float pushForce = 10f;
+    private bool attached = false;
+    public Transform attachedTo;
+    private GameObject disregrad;
          // Start is called before the first frame update
-   void Start()
+   void Awake()
     {
         _ridbod = GetComponent<Rigidbody2D>();
         _amrbod = GetComponent<Renderer>();
         _boxx = GetComponent<BoxCollider2D>();
         _amrRend = GetComponent<SpriteRenderer>();
-
-       
-
-       // _amrbod.material.color = Color.grey;
-
-
+        hd = GetComponent<HingeJoint2D>();
 
     }
 
@@ -52,55 +51,34 @@ public class PlayerMovement : MonoBehaviour
             _ridbod.AddForce(Vector2.up * jumpForce);
             isJumping = true;
             animator.SetBool("isJumping", true);
-           }
-
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-           
-            _amrbod.material.color = Color.grey;
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            
-           _amrbod.material.color = Color.white;
-        }
-
-
-
-        if (_amrbod.material.color == Color.white)
-        {
-            Respawn(blackPosition);
-        }
-
-        if (_amrbod.material.color == Color.grey)
-        {
-            Respawn(whitePosition);
-        }
-
-
-      
-
-    }
-
-/*   public void OnLanding()
-    {
-        animator.SetBool("isJumping", false);
-    }
-*/
-
-    void Respawn(Vector2 position)
-    {
         if (transform.position.y <= -20f)
         {
-            transform.position = position;
+            transform.position = spawn.transform.position;
         }
 
-        if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            transform.position = position;
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+           
+            
         }
+
+
+        CheckKeyboardInputs();
+
+
     }
+
+    /*   public void OnLanding()
+        {
+            animator.SetBool("isJumping", false);
+        }
+    */
+
+   
 
 
     private void OnCollisionEnter2D(Collision2D amr)
@@ -110,8 +88,87 @@ public class PlayerMovement : MonoBehaviour
             isJumping = false;
             animator.SetBool("isJumping", false);
         }
+
+        
+    }
+
+    void CheckKeyboardInputs()
+    {
+        if (Input.GetKey(KeyCode.A))
+        {
+            if(attached)
+            {
+                _ridbod.AddRelativeForce(new Vector2(-1, 0) * pushForce);
+            }
+        }
+
+        if(Input.GetKey(KeyCode.D))
+        {
+            if (attached)
+            {
+                _ridbod.AddRelativeForce(new Vector2(1, 0) * pushForce);
+            }
+        }
+
+       if (Input.GetKeyDown(KeyCode.Space) && isJumping == true)
+        {
+            Detach();
+        }    
+    }
+
+    public void Attach (Rigidbody2D ropeBone)
+    {
+        ropeBone.gameObject.GetComponent<RopeSegment>().isPlayerAttached = true;
+        hd.connectedBody = ropeBone;
+        hd.enabled = true;
+        attached = true;
+        attachedTo = ropeBone.gameObject.transform.parent;
+
+    }
+
+    
+    private void Detach ()
+    {
+        hd.connectedBody.gameObject.GetComponent<RopeSegment>().isPlayerAttached = false;
+        attached = false;
+        hd.enabled = false;
+        hd.connectedBody = null;
+        StartCoroutine(AttachedNull());
+
+
     }
 
 
-    
+
+    IEnumerator AttachedNull()
+    {
+
+        yield return new WaitForSeconds(0.5f);
+        attachedTo = null;
+
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!attached)
+        {
+            if (collision.gameObject.tag == "Rope")
+            {
+                if (attachedTo != collision.gameObject.transform.parent)
+                {
+                    if (disregrad == null || collision.gameObject.transform.parent.gameObject != disregrad)
+                    {
+                        Attach(collision.gameObject.GetComponent<Rigidbody2D>());
+
+                    }
+                }
+            }
+        }
+    }
+
 }
+
+
+
+
