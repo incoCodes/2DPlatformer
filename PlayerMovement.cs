@@ -51,14 +51,16 @@ public class PlayerMovement : MonoBehaviour
         // This plays the animation based on a certain condition to show that the player is moving
         animator.SetFloat("Speed",Mathf.Abs(horizontalInput));
         
-        // This checks if the player is grounded and adds force based on a certain input thats been pressed, This is to allow the player to jump while applying gravity so the player doesn't gravity infinitely
+        // This checks if the player is grounded and adds force based on a certain input thats been pressed, This is to allow the player to jump while applying gravity so the player doesn't
+        // jump infinitely
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             _ridbod.AddForce(Vector2.up * jumpForce);
             isJumping = true;
             animator.SetBool("isJumping", true);
         }
-        // This checks to see if the player is out of the map and if the player is out the map then bring him back to the designated spawn point, this is so the player doesn't fall forever and stop the flow of the game
+        // This checks to see if the player is out of the map and if the player is out the map then bring him back to the designated spawn point, this is so the player doesn't fall forever
+        // and stop the flow of the game
 
         if (transform.position.y <= -20f)
         {
@@ -110,7 +112,8 @@ public class PlayerMovement : MonoBehaviour
                 _ridbod.AddRelativeForce(new Vector2(1, 0) * pushForce);
             }
         }
-        // This gets a certain input from the player and checks to see if the player is currently in the jumping state then detaches the player from the ropes, this allows the player to swing from rope to rope
+        // This gets a certain input from the player and checks to see if the player is currently in the jumping state then detaches the player from the ropes,
+        // this allows the player to swing from rope to rope
        if (Input.GetKeyDown(KeyCode.Space) && isJumping == true)
         {
             Detach();
@@ -145,7 +148,8 @@ public class PlayerMovement : MonoBehaviour
 
     }
    
-    // This checks to see if the player is currently colliding with the rope and if its colliding with the rope then attach it to the rope, this is used to actually get the player stuck to the rope when they collide with it
+    // This checks to see if the player is currently colliding with the rope and if its colliding with the rope then attach it to the rope, this is used to actually get the player stuck to
+    // the rope when they collide with it
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!attached)

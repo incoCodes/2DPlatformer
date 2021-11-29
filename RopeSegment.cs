@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class RopeSegment : MonoBehaviour
 {
+    // These instance variables are to check if the player is attached to the rope segment which is one individual section of the rope split into 5 sections
     public GameObject connectedAbove, connectedBelow;
     public bool isPlayerAttached;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
+   
+    // This fixes the anchor of the rope segment once the player is attached to it, this is so that the player and the segment are parallel to each other rather so we don't get any problems applying physics
     public void RestAnchor()
     {
         connectedAbove = GetComponent<HingeJoint2D>().connectedBody.gameObject;

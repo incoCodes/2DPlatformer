@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class Rope : MonoBehaviour
 {
+    // These instance variables are called to connect the rope segments to the rope class, this allows us to adjust the amount of rope segments we want accordingly,
+    // this is useful if we want the rope to behave different or adjust something specific
+
     public Rigidbody2D hook;
     public GameObject[] prefabSegs;
     public int numlinks = 5;
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
 
-    // Update is called once per frame
+    // This generates the rope's physics while using the rope segments
     void GenerateRope()
     {
         Rigidbody2D prevBod = hook;
