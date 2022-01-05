@@ -11,7 +11,7 @@ Lookout for:
 4. Demo Scenes 
 5. Art
 6. Credits 
-7. ~My will to live~
+7. ~Yakuza 4~
 
 Timeline aka Roadmap:
 
