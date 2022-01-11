@@ -82,6 +82,19 @@ Timeline aka Roadmap:
 
     }
  ```
+ # A summary of my learning
+ 
+ In this project I think I've made some good progress when it comes to being a better programmer and video game developer, before I would watch youtube videos and follow how they would write the code step by step, but in this project I was able to use more of my own thinking and writing my own code it was more independent, obviously I did have to research how to do a few of the mechanics such as the rope physics as well as how to attach the player to the rope and swing (Please refer to rope.cs and ropeSegment.cs for examples), but I was able to tweak a few things that would make it fit with the program. Although the project didn't have anything to flashy or have a lot of functionality in terms of the mechanics it did help me exit my comfort zone a little more as well as be used as evidence that I am more capable of doing better games in the future.
+ 
+ 
+ # Feedback on the game
+ 
+ For the feedback I wanted to ask people who have a solid understanding of video game design and mechanics of course I'm not expecting them to understand it like an acutal developer would but I would like some sort of background or validity when it comes to giving me the feedback, I asked my friends to play test the game for me. I wasn't worried that there would be some bias when it comes to the feedback because my friends would take this seriously if you asked to take it seriously which is what I did, any sort of feedback wouldn't be able to hurt me since I am open to any type of critisim as this isn't my life long work, so after getting the feedback from them I would start to look at what are the most common topics of feedback that I am getting from everyone, then after addressing the most common probelm I would check if I can fix any quality of life issues such as make exit button or a pause menu, of course I wouldn't fix every single problem due to the fact that some of them can be subjective to the person but I would try to fix the most objective ones. 
+ 
+ 
+ # License 
+ 
+ MIT License, Please refer to the License file for more information.
  
  
  
