@@ -5,28 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class Spawn : MonoBehaviour
 {
-    public GameObject Player;
-   
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
     {
+    // This tells the program that if the player presses the R key then restart the level, this is done by getting access to the scene manager in the program
+    // and reactivating the current scene that the player is in.
+    // I added this so that if the player dies from an enemy then they can restart which eliminates their inconvinences if they die. 
         if (Input.GetKeyDown(KeyCode.R))
         {
-           if (Player == null)
-            {
+        
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                    
-            }
-           else if (Player != null)
-            {
-                Player.transform.position = transform.position;
-            }
+                  
         }
 
 
