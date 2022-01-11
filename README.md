@@ -5,13 +5,10 @@ Hello Welcome to my 2D platformer repository.
 I will have all source code and resources from my 2D game here.
 
 Lookout for:
-1. PlayerMovement Source code 
+1. Source code 
 2. Assets 
-3. Animation Files
-4. Demo Scenes 
-5. Art
-6. Credits 
-7. ~Yakuza 4~
+3. Credits 
+4. ~Yakuza 4~
 
 Timeline aka Roadmap:
 
@@ -95,6 +92,10 @@ Timeline aka Roadmap:
  # License 
  
  MIT License, Please refer to the License file for more information.
+ 
+ # Credits
+ 
+ Made by Amr
  
  
  
